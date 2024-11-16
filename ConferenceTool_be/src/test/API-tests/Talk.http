@@ -1,0 +1,98 @@
+### Authorization password grant
+POST http://localhost:8180/realms/conferenceTool/protocol/openid-connect/token
+content-type: application/x-www-form-urlencoded
+
+client_id=conferenceToolClient&client_secret=xLiVsi3V3rpgLQ8zmazurQCkk8q2op8c&username=admin&password=admin&grant_type=password&scope=openid
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+%}
+
+###
+POST http://localhost:8000/api/talk/create
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "speakers_id": ["631be817-4070-479f-ba94-9fbb17714272"],
+  "title": "Mark's talk",
+  "description": "Mark's talk is about the future of the world.",
+  "start_date": "2024-01-13T08:15:00.000",
+  "end_date": "2024-01-13T08:45:00.000",
+  "conference": "a2b92626-1b9e-4ee5-b724-efa6f9a2e7d1",
+  "room": "127555f4-9ba6-4c00-9ec2-30e282c5ab2b"
+}
+
+###
+POST http://localhost:8000/api/talk/create
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "title": "SICKMODES talk",
+  "speakers_id": ["8aada497-f955-4204-a4a3-1c398caadbcb"],
+  "description": "SICKMODE's talk is about the kasts of the world.",
+  "start_date": "2024-01-13T09:30:00.000",
+  "end_date": "2024-01-13T10:15:00.000",
+  "conference": "a2b92626-1b9e-4ee5-b724-efa6f9a2e7d1",
+  "room": "a2b92626-1b9e-4ee5-b724-efa6f9a2e7f3"
+}
+
+### Get all talks of a conference
+GET http://localhost:8000/api/talk/all?conferenceId=a2b92626-1b9e-4ee5-b724-efa6f9a2e7d1
+
+### Get talk with id
+GET http://localhost:8000/api/talk/{{id}}
+
+### Update talk with id
+PUT http://localhost:8000/api/talk/update
+Content-Type: application/json
+
+{
+  "id": "7ebdd522-ff52-4edb-bcd1-bb0321c26289",
+  "title": "Java introduction",
+  "description": "A quick look into java.",
+  "start_date": "2024-03-01T09:00:00",
+  "end_date": "2024-03-01T10:30:00",
+  "conference": "7ebdd522-ff52-4edb-bcd1-bb0321c26289"
+}
+
+### Delete talk with id
+DELETE http://localhost:8000/api/talk/{{id}}
+
+
+### Give a rating to a talk
+POST http://localhost:8000/api/feedback/create
+Content-Type: application/json
+
+{
+  "rating": 5,
+  "comment": "A very nice and inspiring talk!",
+  "talkId": "b9e5e70f-df8b-4d72-921b-496592be2df7",
+  "userId": "6b86dc28-8e80-49bf-8d5b-0ef362f9b218"
+}
+
+
+### Get the average rating of a talk
+GET http://localhost:8000/api/feedback/getRatingOfTalk?talkId=b9e5e70f-df8b-4d72-921b-496592be2df7
+
+
+### Favourite a talk
+POST http://localhost:8000/api/talk/favourite?userId=1495da5e-e394-474d-849c-2ba8636efa57&talkId=388c636b-8b16-4d0a-9b56-41f2a72693d5
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+
+### Get all favourite talks of a user
+GET http://localhost:8000/api/talk/favourite/1495da5e-e394-474d-849c-2ba8636efa57
+
+### get all talks of a speaker
+GET http://localhost:8000/api/talk/getTalksBySpeakerId/79252691-744b-4aeb-8cac-f004c360b6b3
+
+###
+POST http://localhost:8000/api/talk/favourite/?userId=4cf53c9b-f3fa-4931-8425-7f474c70d04c&talkId=a2b92626-1b9e-4ee5-b724-efa6f9a2e7f4
+
+
+### get 5 featured talks of a conference
+GET http://localhost:8000/api/talk/getFeaturedTalksOfConference/a2b92626-1b9e-4ee5-b724-efa6f9a2e7d1
+

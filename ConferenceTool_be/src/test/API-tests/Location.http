@@ -1,0 +1,35 @@
+### Authorization password grant
+POST http://localhost:8080/realms/conferenceTool/protocol/openid-connect/token
+content-type: application/x-www-form-urlencoded
+
+client_id=conferenceToolClient&client_secret=xLiVsi3V3rpgLQ8zmazurQCkk8q2op8c&username=admin&password=admin&grant_type=password&scope=openid
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+%}
+
+### create location
+POST localhost:8000/api/location/create
+Content-Type: application/json
+
+{
+  "street": "Street",
+  "number": "50",
+  "city": "City",
+  "postal_code": "12345",
+  "country": "Country",
+  "extraInfo": "Extra info"
+}
+
+### create location
+POST localhost:8080/api/location/create
+Content-Type: application/json
+
+{
+  "street": "Straat",
+  "number": 5,
+  "city": "Stad",
+  "postal_code": "2840",
+  "country": "België",
+  "extraInfo": "Extra info"
+}

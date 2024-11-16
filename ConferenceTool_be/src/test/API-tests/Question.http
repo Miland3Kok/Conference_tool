@@ -1,0 +1,75 @@
+### Authorization password grant
+POST http://localhost:8180/realms/conferenceTool/protocol/openid-connect/token
+content-type: application/x-www-form-urlencoded
+
+client_id=conferenceToolClient&client_secret=xLiVsi3V3rpgLQ8zmazurQCkk8q2op8c&username=admin&password=admin&grant_type=password&scope=openid
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+%}
+
+
+### create a closed question
+POST http://localhost:8000/api/question/closed
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "content": "this is the content of the question",
+  "talkId": "a4f0bbe2-03b7-4d31-9ea1-c37929a4689c",
+  "correctAnswer": "Right answer",
+  "falseAnswer": "False answer"
+}
+
+### create an open question
+POST http://localhost:8000/api/question/open
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "content": "Open question1",
+  "talkId": "16396b61-4601-4a39-b28f-c823e4c3e7ec"
+}
+
+### create a multiple choice question
+POST http://localhost:8000/api/question/multiple-choice
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "content": "MultipleChoice question1",
+  "talkId": "16396b61-4601-4a39-b28f-c823e4c3e7ec",
+  "options": [
+    {
+      "optionText": "option1",
+      "isCorrect": true
+    },
+    {
+      "optionText": "option2",
+      "isCorrect": false
+    },
+    {
+      "optionText": "option3",
+      "isCorrect": false
+    },
+    {
+      "optionText": "option4",
+      "isCorrect": false
+    }
+  ]
+}
+
+
+### create an answer for a question
+POST http://localhost:8000/api/question/answer
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "userId": "1495da5e-e394-474d-849c-2ba8636efa57",
+  "questionId": "3c45b17e-8a83-4756-a15d-c6408e9050e2",
+  "answer": "this is my answer"
+}
+
+###
+GET http://localhost:8000/api/question/getQuestionsByTalk/a4f0bbe2-03b7-4d31-9ea1-c37929a4689c

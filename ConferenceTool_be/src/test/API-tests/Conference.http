@@ -1,0 +1,101 @@
+### Authorization password grant
+POST http://localhost:8180/realms/conferenceTool/protocol/openid-connect/token
+content-type: application/x-www-form-urlencoded
+
+client_id=conferenceToolClient&username=admin&password=admin&grant_type=password&scope=openid
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+%}
+
+### Get all conferences
+GET localhost:8000/api/conference/all
+
+
+### Create a new conference
+POST localhost:8000/api/conference/create
+Content-Type: application/json
+
+{
+  "name": "HAXX 2024",
+  "description": "Axxes conference HAXX 2024",
+  "start_date": "2024-01-13T12:00:00.000",
+  "end_date": "2024-01-16T12:00:00.000",
+  "location_id": "dc77693b-817b-422d-93b1-3aff0fd2b353",
+  "active": false
+}
+
+### Create a new conference
+POST localhost:8080/api/conference/create
+Content-Type: application/json
+
+{
+    "name": "HAXX 2025",
+    "description": "Axxes conference HAXX 2025",
+    "start_date": "2025-01-13T12:00:00.000",
+    "end_date": "2025-01-16T12:00:00.000",
+    "location_id": "79bcc65b-3b41-4fdd-942b-4c8157a4dcdc",
+    "active": false
+}
+
+### Create a new conference
+POST localhost:8080/api/conference/create
+Content-Type: application/json
+
+{
+    "name": "HAXX 2026",
+    "description": "Axxes conference HAXX 2026",
+    "start_date": "2026-01-13T12:00:00.000",
+    "end_date": "2026-01-16T12:00:00.000",
+    "location_id": "79bcc65b-3b41-4fdd-942b-4c8157a4dcdc",
+    "active": false
+}
+
+### Delete a conference
+DELETE localhost:8000/api/conference/delete?conferenceUUID=df459c2b-04aa-47fd-b24f-7057d1690453
+
+### Update a conference
+PUT localhost:8000/api/conference/update
+Content-Type: application/json
+
+{
+    "conference_id": "a87af4d6-1069-472c-8251-844d54675d3d",
+    "name": "Conference updated",
+    "description": "Description 1",
+    "start_date": "2024-01-13T12:00:00.000",
+    "end_date": "2024-01-16T12:00:00.000",
+    "location_id": "d52e70d3-ad26-4301-a62c-01a20418e31d",
+    "active": true
+}
+
+### get the first conference
+GET localhost:8000/api/conference/first
+
+### get conference by id
+GET http://localhost:8000/api/conference/d795a4e9-ff59-41e3-bb66-7590b5592194
+
+###
+PUT http://localhost:8000/api/conference/toggle-status/a2b92626-1b9e-4ee5-b724-efa6f9a2e7d1
+Authorization: Bearer {{access_token}}
+
+### Get all talks for a conference
+GET http://localhost:8000/api/conference/a2b92626-1b9e-4ee5-b724-efa6f9a2e7d1/talks
+
+### Get all Rooms of a conference
+GET http://localhost:8000/api/conference/a2b92626-1b9e-4ee5-b724-efa6f9a2e7d1/rooms
+
+###
+POST http://localhost:8000/api/conference/upload-floorplan
+Authorization: Bearer {{access_token}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; file:'file'; filename="Grondplan_TC_1st_floor.jpg"
+Content-Type: image/jpeg
+
+@src/main/resources/Grondplan_TC_1st_floor.jpg
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="conferenceId"
+
+a2b92626-1b9e-4ee5-b724-efa6f9a2e7d1
+----WebKitFormBoundary7MA4YWxkTrZu0gW--

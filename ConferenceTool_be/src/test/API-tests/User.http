@@ -1,0 +1,64 @@
+### Authorization password grant
+POST http://localhost:8180/realms/conferenceTool/protocol/openid-connect/token
+content-type: application/x-www-form-urlencoded
+
+client_id=conferenceToolClient&client_secret=95aMEiN1Rk0w9FN4a9f88FZ8NGsAHbZg&username=admin&password=admin&grant_type=password&scope=openid
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+%}
+
+### User
+
+### Create a new user
+POST localhost:8000/api/user/create
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "firstName": "Admin",
+  "lastName": "Admin",
+  "office_function": "Admin"
+}
+
+### create a new speaker
+POST http://localhost:8000/api/speaker/create
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "userId": "6b86dc28-8e80-49bf-8d5b-0ef362f9b218",
+  "bio": "Markie",
+  "phone": "0496391145"
+}
+
+### Get all users
+GET localhost:8000/api/user/all
+
+### Get user by id
+GET http://localhost:8000/api/user/f483f9e3-2482-45fc-9c6f-36b5d9539ec1
+
+### Update a user
+PUT http://localhost:8000/api/user/update?userId=05f1df1f-cf69-4833-9985-e1e7c69e199a
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "firstName": "Mark",
+  "lastName": "Kast",
+  "office_function": "Junior Dev"
+}
+
+### Delete a user
+DELETE http://localhost:8000/api/user/delete?userId=05f1df1f-cf69-4833-9985-e1e7c69e199a
+
+
+###
+POST http://localhost:8000/api/speaker/createSpeakerWithId?userId=8a9f5b87-8c40-4c2c-9668-71ad27cc96fe
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+###
+GET http://localhost:8000/api/keycloak/getRoles
+Content-Type: application/json
+Authorization: Bearer {{access_token}}

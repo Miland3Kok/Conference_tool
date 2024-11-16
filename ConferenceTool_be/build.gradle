@@ -1,0 +1,95 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.springframework.boot' version '3.2.2'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+group = 'be.kdg'
+version = '0.0.1-SNAPSHOT'
+
+java {
+}
+
+springBoot {
+    mainClassName = 'be.kdg.conference.ConferenceToolBackendApplication'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Core Dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+
+
+    // Compile-only Dependencies
+    compileOnly 'org.projectlombok:lombok'
+
+    // Development-only Dependencies
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Runtime-only Dependencies mysql database
+    runtimeOnly 'mysql:mysql-connector-java:8.0.31'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // Annotation Processor Dependencies
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Testing Dependencies
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+    testImplementation 'com.h2database:h2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+    // Email Dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+    //Excel Dependencies
+    implementation 'org.apache.poi:poi:5.2.4'
+    implementation 'org.apache.poi:poi-ooxml:5.2.4'
+
+    // Spring Security Dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'org.keycloak:keycloak-admin-client:21.1.1'
+}
+
+
+tasks.build {
+    doLast {
+        bootJar {
+            launchScript()
+        }
+    }
+}
+
+ext {
+    set('snippetsDir', file("build/generated-snippets"))
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+bootJar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+kotlin {
+    jvmToolchain(17)
+}

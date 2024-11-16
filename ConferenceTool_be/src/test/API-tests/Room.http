@@ -1,0 +1,39 @@
+### Authorization password grant
+POST http://localhost:8180/realms/conferenceTool/protocol/openid-connect/token
+content-type: application/x-www-form-urlencoded
+
+client_id=conferenceToolClient&username=admin&password=admin&grant_type=password&scope=openid
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+%}
+
+### Create a room
+POST http://localhost:8000/api/room/create
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "Room1",
+  "conference_id": "a2b92626-1b9e-4ee5-b724-efa6f9a2e7d1",
+  "talks": []
+}
+
+### Get all rooms
+GET http://localhost:8000/api/room/all
+
+### Get a room by id
+GET http://localhost:8000/api/room/{{id}}
+
+### Update a room
+PUT http://localhost:8000/api/room/update/{{id}}
+Content-Type: application/json
+
+{
+  "room_id": "",
+  "name": "",
+  "talks": []
+}
+
+### delete a room
+DELETE http://localhost:8000/api/room/delete/{{id}}
