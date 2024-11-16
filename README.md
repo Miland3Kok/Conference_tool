@@ -1,60 +1,108 @@
-# Conference Tool - Project Documentation
+# Conference Tool
 
 ## Overview
 
-This project is developed by a team of three third-year students from the **Applied Informatics** program at **Karel de Grote University of Applied Sciences** in Antwerp. Our focus for this project is on **Full Stack Development**. We have selected a new and exciting technology stack for the Conference Tool, a web application developed for **Axxes**, which aims to streamline the conference management process.
+Welcome to the **Conference Tool** project! This tool has been developed to streamline conference management for **Axxes**, providing a seamless, user-friendly platform for internal use. The tool integrates modern technologies to ensure a robust, secure, and efficient experience for users.
 
-Having worked extensively with **Java Spring Boot** (for backend) and **React** (for frontend) in previous projects, we decided to venture into **Angular** for the frontend of this project. This allowed us to expand our skill set and deepen our understanding of a different technology while tackling the needs of the Conference Tool.
+**Axxes** specializes in providing cutting-edge IT solutions, and this tool aims to enhance their internal processes for managing conferences, from registration to data handling and security. With this tool, Axxes can easily manage users, track conference details, and ensure secure access to all participants.
 
-## Technology Stack
+## Technologies
 
-### Backend
+- **Spring Boot** for backend development
+- **Angular 17.2** for frontend development
+- **MySQL** for database storage
+- **Keycloak** for identity and access management
 
-For the backend, we chose **Java Spring Boot**, a stable and platform-independent framework. This decision was driven by the need for a robust backend environment that integrates seamlessly with the chosen frontend and database, offering scalability and flexibility.
+## User Profiles
 
-### Frontend
+1. **Admin (Conference Organizer)**
+   The Admin is responsible for managing the conference tool. They handle user access, manage conference details, and ensure that all participants have the necessary permissions. They use Keycloak for managing authentication and authorization.
 
-The frontend is built using **Angular 17.2**, a modern framework for building dynamic web applications. While we were new to Angular, we undertook individual training through an "Angular For Beginners" course by **Angular University** to familiarize ourselves with the framework. We found that transitioning from **React** to Angular was relatively smooth due to shared concepts like components, services, and reactive programming.
+2. **Speaker (Presenter)**
+   Speakers are registered users who give presentations at the conference. They are able to access session schedules, upload presentation materials, and interact with attendees through the platform.
 
-Angular provides a more structured and organized development experience compared to React, which we appreciate, especially with its recent changes in version 17.2. This version introduces the **standalone component** architecture, eliminating the need for an `app.module.ts` file, streamlining the app's structure.
+3. **Attendee**
+   Attendees are conference participants who have access to session schedules, can register for events, and interact with other participants. They also have access to past session materials and conference-related content.
 
-### Database
+4. **External Integrator (API User)**
+   External partners or systems can interact with the Conference Tool via the exposed APIs, allowing them to integrate with third-party systems for automated data exchange or analysis.
 
-For data storage, we chose **MySQL**. As an open-source and well-documented relational database management system, MySQL provided a cost-effective solution with cross-platform compatibility. MySQL integrates seamlessly with Java Spring Boot and is simple to set up and configure, which was crucial for our development process, as we are primarily using **MacOS**.
+## Functionality
 
-### Security
+The **Conference Tool** consists of three main components, each with a unique set of responsibilities:
 
-Given that the Conference Tool will be used internally, securing user data and application access is of utmost importance. We implemented **Keycloak** as our Identity Provider (IDP). Keycloak offers robust features for:
+### 1. Backend (API Endpoints)
+The backend, built with **Java Spring Boot**, provides the necessary API endpoints for interaction:
 
-- **Authentication and Authorization**  
-- **Single Sign-On (SSO)**
-- **Federated Identity**
+- User registration and authentication through **Keycloak**
+- Conference schedule management
+- User role management (Admin, Speaker, Attendee)
+- Session tracking, including attendance and materials
+- Integration with external services for data sharing
+- Real-time notifications and updates to attendees and speakers
 
-By using Keycloak, we are able to manage user identities securely, enforce access controls, and support external identity providers such as Google, Facebook, or LDAP, if necessary. This provides a secure and seamless authentication experience for users while ensuring compliance with security standards.
+### 2. Frontend (Web Application)
+The frontend, developed with **Angular 17.2**, offers a modern, user-friendly interface with the following features:
 
-## Key Features
+- Responsive design for desktop and mobile devices
+- Conference schedule display with session details
+- User login and role-based access
+- Event registration and material download options
+- Speaker and attendee profiles with interaction capabilities
 
-- **Secure User Authentication**: With Keycloak as the IDP, we ensure that only authorized users can access the application, and sensitive data is protected.
-- **Database Management**: All necessary data is stored in a **MySQL** database, which is reliable, cost-effective, and easy to manage.
-- **Frontend with Angular**: The user interface is built using **Angular 17.2**, offering a modern, organized, and scalable front-end structure.
-- **Backend with Java Spring Boot**: The backend is powered by **Java Spring Boot**, ensuring a strong, stable environment for the server-side logic.
+### 3. Database (MySQL)
+The backend is supported by a **MySQL** database that stores:
 
-## Development Process
+- User data and authentication information
+- Conference schedules and session details
+- Event registration and attendance information
+- User roles and permissions
 
-1. **Research and Technology Selection**  
-   After careful consideration of various options, we chose the technologies that best suited the project’s needs: **Angular** for the frontend, **Java Spring Boot** for the backend, and **MySQL** for data storage.
+### 4. Identity and Access Management (Keycloak)
+**Keycloak** is used to manage user identities and access control:
 
-2. **Learning Angular**  
-   Since none of us had experience with Angular, we followed an in-depth course on Angular fundamentals. We found that learning Angular was easier with our existing knowledge of React, as many concepts overlap between the two frameworks.
+- Single Sign-On (SSO) functionality for users
+- Role-based access control (RBAC) for different user types
+- Integration with external identity providers (optional)
+- Secure token-based authentication
 
-3. **Database Setup**  
-   We set up **MySQL** to store all necessary data for the Conference Tool. The database was easily integrated with **Spring Boot** and worked well within our cross-platform environment.
+## Testing
 
-4. **Security Implementation**  
-   Implementing **Keycloak** for authentication and authorization was a priority. We configured it to manage user sessions, access rights, and integrated it for a seamless login experience.
+Testing is a key focus of the Conference Tool project. We ensure that the application is thoroughly tested through:
+
+- **Unit Tests**: For backend logic like user authentication, data processing, and session management.
+- **Integration Tests**: For API endpoints, database interactions, and end-to-end user flows.
+- **UI Tests**: For verifying frontend interactions and ensuring responsiveness across devices.
+
+## Configuration and Logging
+
+### Configuration
+The Conference Tool is highly configurable, allowing for customization of various aspects of the application, including:
+
+- Database connections
+- **Keycloak** configuration for user authentication
+- User roles and permissions
+- Conference settings such as session timeouts and registration cut-offs
+
+### Logging
+Detailed logging is implemented to track errors and debug the application. Key logging features include:
+
+- API request and response logging for error tracking
+- Database interaction logs for troubleshooting
+- Real-time event logging for session updates and notifications
+
+## Infrastructure
+
+The application can be run locally or deployed in a production environment. To make the development process easier, we have created a **Docker-Compose** setup to run the entire application locally. This setup includes:
+
+- **MySQL** database
+- **Keycloak** for identity management
+- **Angular** frontend
+- **Spring Boot** backend
+
+You can find the `docker-compose.yml` file here: `docker-compose.yml`
 
 ## Conclusion
 
-Through careful selection of technologies and thoughtful implementation, we have successfully developed a **Conference Tool** for **Axxes** that is secure, efficient, and easy to use. By leveraging **Java Spring Boot** for the backend, **Angular** for the frontend, **MySQL** for data storage, and **Keycloak** for authentication, we have created a robust and scalable solution that aligns with the client’s needs.
+By leveraging the latest technologies such as **Spring Boot**, **Angular**, **MySQL**, and **Keycloak**, we have created a powerful **Conference Tool** that meets the needs of **Axxes**. This project not only strengthens our understanding of modern full-stack development but also ensures a secure and scalable solution for conference management. We hope this tool will contribute significantly to Axxes' internal operations and improve the conference experience for all users.
 
-We believe this project not only highlights our ability to adapt to new technologies but also delivers a high-quality tool that enhances knowledge sharing and innovation within the IT sector.
