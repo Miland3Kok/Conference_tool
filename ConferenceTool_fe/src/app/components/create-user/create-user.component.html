@@ -1,0 +1,85 @@
+<app-sidenav [title]="'Create User'">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Create users</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <a href="assets/example.xlsx" download="example.xlsx">Download example excel file</a>
+            <div class="form-field">
+                <label>Upload an Excel-file</label>
+                <input type="file" (change)="onFileSelected($event)" accept=".xlsx, .xls">
+            </div>
+            <div class="form-actions">
+                <button mat-raised-button color="primary" (click)="uploadFile()" type="button">Upload</button>
+            </div>
+        </mat-card-content>
+
+        <mat-card-content>
+            <form [formGroup]="createUser">
+                <div class="form-field">
+                    <label for="firstname">Firstname</label>
+                    <input type="text"
+                           id="firstname"
+                           name="firstname"
+                           pInputText
+                           formControlName="firstname"
+                           placeholder="Firstname"/>
+                </div>
+
+                <div class="form-field">
+                    <label for="lastname">Lastname</label>
+                    <input type="text"
+                           id="lastname"
+                           name="lastname"
+                           pInputText
+                           formControlName="lastname"
+                           placeholder="Lastname"/>
+                </div>
+
+                <div class="form-field">
+                    <label for="office_function">Function</label>
+                    <input type="text"
+                           id="office_function"
+                           name="office_function"
+                           pInputText
+                           formControlName="office_function"
+                           placeholder="Function"/>
+                </div>
+
+                <div class="form-field">
+                    <label for="username">Username</label>
+                    <input type="text"
+                           id="username"
+                           name="username"
+                           pInputText
+                           formControlName="username"
+                           placeholder="Username"/>
+                </div>
+
+                <div class="form-field">
+                    <label for="email">E-mail</label>
+                    <input name="email"
+                              type="text"
+                              id="email"
+                              pInputText
+                              formControlName="email"
+                              placeholder="E-mail">
+                </div>
+
+                <div class="form-field">
+                    <label for="role">Role</label>
+                    <select id="role" name="role" formControlName="role">
+                        <option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button mat-raised-button color="primary" type="button" (click)="onSubmit()">Create user</button>
+                </div>
+
+            </form>
+        </mat-card-content>
+
+    </mat-card>
+</app-sidenav>

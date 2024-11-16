@@ -1,0 +1,51 @@
+<app-sidenav [title]="'Location Update'">
+    <mat-card class="updateCard" *ngIf="location && locationForm && conference">
+        <mat-card-header>
+            <mat-card-title>Update Location</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="locationForm">
+                <div class="form-field">
+                    <label for="street">Street</label>
+                    <input type="text"
+                           id="street"
+                           name="street"
+                           pInputText
+                           formControlName="street"
+                           placeholder="Enter street"
+                    />
+                </div>
+
+                <div class="form-field">
+                    <label for="number">Number</label>
+                    <input type="text" id="number" name="number" pInputText formControlName="number"/>
+                </div>
+
+                <div class="form-field">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" pInputText formControlName="city"/>
+                </div>
+
+                <div class="form-field">
+                    <label for="postal_code">Postal Code</label>
+                    <input type="text" id="postal_code" name="postal_code" pInputText formControlName="postal_code"/>
+                </div>
+
+                <div class="form-field">
+                    <label for="country">Country</label>
+                    <input type="text" id="country" name="country" pInputText formControlName="country"/>
+                </div>
+
+                <div class="form-field">
+                    <label for="extraInfo">Extra Info</label>
+                    <input type="text" id="extraInfo" name="extraInfo" pInputText formControlName="extraInfo"/>
+                </div>
+
+                <div class="form-actions">
+                    <button mat-raised-button color="primary" type="button" (click)="updateLocation()">Save</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</app-sidenav>

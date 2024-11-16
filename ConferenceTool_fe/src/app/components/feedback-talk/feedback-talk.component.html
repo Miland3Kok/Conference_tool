@@ -1,0 +1,16 @@
+<div class="feedback-form-container">
+    <h2>Give feedback:</h2>
+    <form [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()">
+        <div>
+            <app-star-rating [rating]="feedbackForm.controls['rating'].value" (ratingChange)="feedbackForm.controls['rating'].setValue($event)"></app-star-rating>
+        </div>
+        <mat-form-field appearance="fill">
+            <mat-label class="commentlabel">Comment</mat-label>
+            <textarea matInput formControlName="comment" required></textarea>
+            <mat-error *ngIf="feedbackForm.controls['comment'].invalid && feedbackForm.controls['comment'].touched">
+                Comment is required
+            </mat-error>
+        </mat-form-field>
+        <button mat-raised-button type="submit" class="submitFeedback">Submit Feedback</button>
+    </form>
+</div>

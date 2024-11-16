@@ -1,0 +1,54 @@
+.mat-card, mat-card {
+    width: 80% !important;
+    text-align: center;
+    margin: 10px auto 0;
+    font-family: "montserrat", sans-serif !important;
+}
+
+.mat-card-header, mat-card-header {
+    margin: 0 auto 3vh;
+    font-size: 150% !important;
+}
+
+.form-field {
+    margin-bottom: 2vh;
+    display: grid;
+}
+
+.form-field label {
+    width: 50%;
+    padding: 1vh 0;
+    font-size: 130%;
+    margin: 0 auto;
+    text-align: left;
+    font-family: "montserrat", sans-serif !important;
+    letter-spacing: 2px;
+}
+
+.form-field select {
+    padding: 1vh;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-field input, select, .form-field textarea, ::ng-deep .p-calendar, ::ng-deep .p-dropdown{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.form-actions {
+    margin-top: 20px;
+}
+
+.form-actions button {
+    background-color: #e9531d;
+    color: white;
+}
+
+.mat-card-header button {
+    background-color: #e9531d;
+    color: white;
+    margin: 0 auto;
+}

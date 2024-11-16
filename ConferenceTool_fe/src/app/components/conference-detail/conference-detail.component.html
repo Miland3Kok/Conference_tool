@@ -1,0 +1,110 @@
+<app-sidenav [title]="'Conference Detail'">
+
+    <mat-card class="conferenceCard" *ngIf="conference && location">
+        <mat-card-header class="conferenceHeader">
+            <mat-card-title><h1>{{ conference.name }}</h1></mat-card-title>
+            <mat-card-subtitle>{{ conference.description }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="conferenceContent">
+
+            <p>
+                <strong>Status: </strong>
+                {{ conference.active ? 'Active' : 'Inactive' }}
+                <span class="blink_active" *ngIf="conference.active"></span>
+                <span class="blink_inactive" *ngIf="!conference.active"></span>
+            </p>
+            <p><strong>Start Date:</strong> {{ conference.start_date | date: 'medium' }}</p>
+            <p><strong>End Date:</strong> {{ conference.end_date | date: 'medium' }}</p>
+
+
+            <mat-card class="locationCard">
+                <mat-card-header>
+                    <mat-card-title>Location of {{conference.name}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                        <strong>Street:</strong> {{ location.street }}
+                    </p>
+                    <p>
+                        <strong>Number:</strong> {{ location.number }}
+                    </p>
+                    <p>
+                        <strong>City:</strong> {{ location.city }}
+                    </p>
+                    <p>
+                        <strong>Postal code:</strong> {{ location.postal_code }}
+                    </p>
+                    <p>
+                        <strong>Country:</strong> {{ location.country }}
+                    </p>
+                    <p>
+                        <strong>Extra info:</strong> {{ location.extraInfo }}
+                    </p>
+
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="accent" (click)="goToLocationUpdatePage()">Update Location</button>
+                </mat-card-actions>
+
+
+            </mat-card>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="updateCard" *ngIf="conference && location && formLocation">
+        <mat-card-header>
+            <mat-card-title>Update Conference</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="conferenceForm">
+                <div class="form-field">
+                    <label for="name">Name</label>
+                    <input type="text"
+                           id="name"
+                           name="name"
+                           pInputText
+                           formControlName="name"
+                    />
+                </div>
+
+                <div class="form-field">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" pInputTextarea
+                              formControlName="description"  [autoResize]="true"></textarea>
+                </div>
+
+                <div class="form-field">
+                    <label for="start-date">Start date</label>
+                    <p-calendar id="start-date"
+                                name="start_date"
+                                formControlName="start_date"
+                                hourFormat="24"
+                                [stepMinute]="5"
+                                [showTime]="true"
+                                [showIcon]="true">
+                    </p-calendar>
+                </div>
+                <div class="form-field">
+                    <label for="end-date">End date</label>
+                    <p-calendar id="end-date"
+                                name="end_date"
+                                formControlName="end_date"
+                                hourFormat="24"
+                                [stepMinute]="5"
+                                [showTime]="true"
+                                [showIcon]="true">
+                    </p-calendar>
+                </div>
+
+
+                <div class="form-actions">
+                    <button mat-raised-button color="accent" type="button" (click)="updateConference()">Save
+                        Changes
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+</app-sidenav>

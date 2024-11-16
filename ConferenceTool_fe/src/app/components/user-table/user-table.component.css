@@ -1,0 +1,9 @@
+.petroliumButton {
+    background-color: #035d67 !important;
+    color: white !important;
+}
+
+.petroliumButton:disabled {
+    background-color: #888 !important;
+    cursor: not-allowed !important;
+}

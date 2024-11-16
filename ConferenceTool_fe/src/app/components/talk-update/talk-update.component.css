@@ -1,0 +1,45 @@
+
+.mat-card, mat-card {
+    width: 80% !important;
+    text-align: center;
+    margin: 10px auto 0;
+}
+
+.form-field {
+    margin-bottom: 2vh;
+    display: grid;
+}
+
+.form-field label {
+    width: 50%;
+    padding: 1vh;
+    font-size: 120%;
+    margin: 0 auto;
+    text-align: left;
+    font-weight: bold;
+}
+
+
+.form-field input, .form-field textarea, ::ng-deep .p-calendar, ::ng-deep .p-dropdown {
+    width: 50%;
+    margin: 0 auto;
+}
+
+
+.form-actions {
+    margin-top: 20px;
+}
+
+.mat-card-header, mat-card-header {
+    margin: 0 auto 3vh;
+    font-size: 150% !important;
+}
+
+
+.updateCard, .optionsCard, .tableCard {
+    padding: 5vh;
+    box-shadow: rgba(29, 36, 43, 0.35) 0 0 5px;
+    margin-top: 3vh;
+    margin-bottom: 5vh;
+}
+

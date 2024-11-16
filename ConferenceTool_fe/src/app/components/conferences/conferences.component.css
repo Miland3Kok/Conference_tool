@@ -1,0 +1,46 @@
+.blink_me {
+    animation: blinker 1.5s linear infinite;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border: 1px solid green;
+    background-color: green;
+    border-radius: 100%;
+}
+@keyframes blinker {
+    50% {
+        opacity: 0.4;
+    }
+}
+
+b{
+    cursor: pointer !important;
+}
+.clickable-row {
+    cursor: pointer;
+}
+
+.clickable-row:hover {
+    color: #e9531d;
+}
+
+.no-click {
+    cursor: auto;
+}
+
+.createButton{
+    margin: 3vh;
+}
+
+.conferenceTable{
+    text-align: center;
+}
+
+td, th {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.nameCell,  th:nth-child(2){
+    text-align: left !important;
+}

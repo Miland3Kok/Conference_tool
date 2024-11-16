@@ -1,0 +1,34 @@
+<app-sidenav [title]="'Planning'">
+    <mat-tab-group>
+        <mat-tab *ngFor="let date of dates" [label]="(date.getDate().toString())">
+            <table class="scheduler-table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th *ngFor="let room of rooms">{{room.name}}</th> <!-- Room names -->
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let timeSlot of schedule">
+                    <td>{{timeSlot.time}}</td>
+                    <td *ngFor="let room of rooms">
+                        <div *ngFor="let talk of getTalksForDate(date)">
+                            <div *ngIf="isTalkInTimeSlot(talk, timeSlot.time) && talk.room === room.room_id" class="booked">
+                                <mat-card (click)="openDialog(talk)">
+                                    <mat-card-title>{{talk.title}}</mat-card-title>
+                                    <mat-card-content>
+                                        <p>{{talk.description}}</p>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </mat-tab>
+    </mat-tab-group>
+</app-sidenav>
+
+
+

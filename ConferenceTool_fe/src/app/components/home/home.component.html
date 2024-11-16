@@ -1,0 +1,22 @@
+<app-sidenav [title]="conference?.name ?? 'Home'">
+    <app-upcoming-conference [conference]="conference"></app-upcoming-conference>
+    <h2 id="featuredTalksHeader">Featured Talks</h2>
+
+    <p-carousel [value]="talks" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+        <ng-template let-talk pTemplate="item">
+            <div class="border-1 surface-border border-round m-2 text-center">
+                <div class="talkWrapper">
+                    <h2 class="mb-1 title">{{ talk.title }}</h2>
+                    <h3 class="mt-0 mb-3">{{talk.description }}</h3>
+                    <div class="mt-5 flex align-items-center justify-content-center gap-2">
+                        <mat-chip class="orange">Room: {{ getRoomName(talk.room) }}</mat-chip>
+                        <div class="actions">
+                            <p-button icon="pi pi-search" [rounded]="true"  />
+                            <p-button icon="pi pi-star-fill" [rounded]="true" severity="secondary" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</app-sidenav>

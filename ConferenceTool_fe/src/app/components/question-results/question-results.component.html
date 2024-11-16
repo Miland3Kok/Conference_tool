@@ -1,0 +1,16 @@
+<app-sidenav [title]="'Question results'">
+    <mat-card class="answerInfo">
+        <mat-card-header>
+            <mat-card-title> <p>{{question?.content}}</p></mat-card-title>
+            <mat-card-title *ngIf="question?.type === 'CLOSED'">  <p>Correct answer: {{question?.correctAnswer}}</p></mat-card-title>
+            <mat-card-subtitle><p>{{question!.type.toString().toLowerCase()}} question</p></mat-card-subtitle>
+        </mat-card-header>
+
+
+
+
+    </mat-card>
+    <p-chart width="75%" height="75%" class="piechart" *ngIf="question?.type === 'CLOSED'" type="pie" [data]="data"></p-chart>
+    <angular-tag-cloud *ngIf="question?.type === 'OPEN' && cloudData.length > 0" [data]="cloudData" [class.custom-css]='true'></angular-tag-cloud>
+    <p-chart width="75%" height="75%"  class="barchart" *ngIf="question?.type ==='MULTIPLE_CHOICE'" type="bar" [data]="data"></p-chart>
+</app-sidenav>

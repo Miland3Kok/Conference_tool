@@ -1,0 +1,277 @@
+/*************************
+ * GRID SCHEDULE LAYOUT
+ *************************/
+@media screen and (max-width: 700px) {
+    .time-slot, .track-slot {
+        display: none;
+    }
+
+    .schedule {
+        padding: 1vh;
+    }
+
+}
+
+@media screen and (min-width: 700px) {
+    .schedule {
+        padding: 1vh;
+        display: grid;
+        grid-column-gap: 3em;
+        grid-row-gap: 0;
+        grid-template-rows:
+            [tracks] auto
+            /*
+            [time-0800] 0.1fr
+            [time-0815] 0.1fr
+            [time-0830] 0.1fr
+            [time-0845] 0.1fr
+            [time-0900] 0.1fr
+            [time-0915] 0.1fr
+            [time-0930] 0.1fr
+            [time-0945] 0.1fr
+            [time-1000] 0.1fr
+            [time-1015] 0.1fr
+            [time-1030] 0.1fr
+            [time-1045] 0.1fr
+            [time-1100] 0.1fr
+            [time-1115] 0.1fr
+            [time-1130] 0.1fr
+            [time-1145] 0.1fr
+            [time-1200] 0.1fr
+            [time-1215] 0.1fr
+            [time-1230] 0.1fr
+            [time-1245] 0.1fr
+            [time-1300] 0.1fr
+            [time-1315] 0.1fr
+            [time-1330] 0.1fr
+            [time-1345] 0.1fr
+            [time-1400] 0.1fr
+            [time-1415] 0.1fr
+            [time-1430] 0.1fr
+            [time-1445] 0.1fr
+            [time-1500] 0.1fr
+            [time-1515] 0.1fr
+            [time-1530] 0.1fr
+            [time-1545] 0.1fr
+            [time-1600] 0.1fr
+            [time-1615] 0.1fr
+            [time-1630] 0.1fr
+            [time-1645] 0.1fr
+            [time-1700] 0.1fr
+            [time-1715] 0.1fr
+            [time-1730] 0.1fr
+            [time-1745] 0.1fr
+
+             */
+            [time-1800] 0.1fr
+            [time-1815] 0.1fr
+            [time-1830] 0.1fr
+            [time-1845] 0.1fr
+            [time-1900] 0.1fr
+            [time-1915] 0.1fr
+            [time-1930] 0.1fr
+            [time-1945] 0.1fr
+            [time-2000] 0.1fr
+            [time-2015] 0.1fr
+            [time-2030] 0.1fr
+            [time-2045] 0.1fr
+            [time-2100] 0.1fr
+            [time-2115] 0.1fr
+            [time-2130] 0.1fr
+            [time-2145] 0.1fr
+            [time-2200] 0.1fr
+            [time-2215] 0.1fr
+            [time-2230] 0.1fr
+            [time-2245] 0.1fr
+            [time-2300] 0.1fr
+            [time-2315] 0.1fr
+            [time-2330] 0.1fr
+            [time-2345] 0.1fr;
+    }
+
+}
+
+.time-slot {
+    grid-column: times;
+}
+
+.track-slot {
+    display: none;
+}
+
+
+@supports ( display:grid ) {
+    @media screen and (min-width: 700px) {
+        .track-slot {
+            display: block;
+            padding: 10px 5px 5px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, .9);
+        }
+    }
+}
+
+/* Small-screen & fallback styles */
+.session {
+    margin-bottom: 1em;
+}
+
+@supports ( display:grid ) {
+    @media screen and (min-width: 700px) {
+        .session {
+            margin: 0;
+        }
+    }
+}
+
+/*************************
+ * VISUAL STYLES
+ * Design-y stuff ot particularly important to the demo
+ *************************/
+body {
+    padding: 50px;
+    max-width: 1100px;
+    margin: 0 auto;
+    line-height: 1.5;
+    font-family: "montserrat", sans-serif !important;
+}
+
+.session {
+    padding: 1.5em;
+    margin-bottom: 1vh;
+    border-radius: 4px;
+    font-size: 2vh;
+    box-shadow: rgba(255, 255, 255, .6) 1px 1px 0,
+    rgba(0, 0, 0, .3) 4px 4px 0;
+
+    background-color: #1d242b;
+    color: #fff;
+}
+
+.session-title,
+.session-time,
+.session-track,
+.session-presenter {
+    display: block;
+}
+
+.session-title {
+    margin-bottom: 2vh;
+    font-size: 1em !important;
+
+
+}
+
+.session-title a {
+    color: #fff;
+    text-decoration: none;
+
+    &:hover {
+        font-style: italic;
+    }
+
+    &:focus {
+        outline: 2px dotted rgba(255, 255, 255, .8);
+    }
+}
+
+.session-time {
+    font-size: 1.15em;
+    margin-bottom: 2vh;
+}
+
+.session-track {
+    font-size: 1.15em;
+    margin-bottom: 2vh;
+    margin-top: 5vh;
+}
+
+.session-presenter {
+    font-size: 1.05em;
+    margin-bottom: 1vh;
+    line-height: 1.5;
+}
+
+.track-slot,
+.time-slot {
+    font-size: 1.25em;
+    border-radius: 2px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    box-shadow: rgba(255, 255, 255, .5) 1px 1px 0,
+    rgba(0, 0, 0, .2) 2px 2px 0;
+}
+
+
+.time-slot {
+    min-width: 10vh;
+    padding: 1em;
+}
+
+.time-slot:nth-child(odd), .track-slot {
+    background-color: #1d242b;
+    color: #fff;
+}
+
+.time-slot:nth-child(even) {
+    color: #1d242b;
+}
+
+
+.track-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ccc;
+    color: #000;
+    box-shadow: none;
+}
+
+.text {
+    max-width: 750px;
+    font-size: 18px;
+    margin: 0 auto 50px;
+}
+
+.meta {
+    color: #555;
+    font-style: italic;
+}
+
+.meta a {
+    color: #555;
+}
+
+hr {
+    margin: 40px 0;
+}
+
+h2 {
+    margin: 0 0 10px;
+}
+
+.session-title mat-icon {
+    vertical-align: sub;
+    cursor: pointer;
+}
+
+.mat-mdc-standard-chip.chip-favorited {
+    background-color: #1d242b !important;
+    color: #fff;
+}
+
+.mat-mdc-standard-chip.chip-not-favorited {
+    background-color: #e9531d !important;
+    color: #fff;
+}
+
+.info-icon-favorited {
+    color: #1d242b;
+}
+
+.info-icon-not-favorited {
+    color: #e9531d;
+}
+

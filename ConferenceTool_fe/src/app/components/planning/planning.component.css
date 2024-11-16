@@ -1,0 +1,36 @@
+.scheduler-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.scheduler-table th, .scheduler-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.scheduler-table th {
+    background-color: #f2f2f2;
+    color: black;
+}
+
+.scheduler-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.scheduler-table tr:hover {
+    background-color: #ddd;
+}
+
+.scheduler-table td {
+    text-align: center;
+}
+
+mat-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

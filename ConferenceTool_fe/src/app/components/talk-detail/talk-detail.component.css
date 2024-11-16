@@ -1,0 +1,115 @@
+mat-card {
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+mat-card-header {
+    display: flex;
+    align-items: center;
+}
+
+mat-card-avatar {
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+}
+
+mat-card-title {
+    font-size: 1.5em;
+    color: #e9531d;
+    justify-content: center;
+}
+
+mat-card-content p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+mat-divider {
+    margin: 10px 0;
+}
+
+
+.speaker-list {
+    width: 100%;
+    max-width: 400px;
+    margin-left: 0;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.speaker-list mat-list-item {
+    border-bottom: 1px solid #ddd;
+    padding: 50px;
+}
+
+.speaker-list mat-list-item:last-child {
+    border-bottom: none;
+}
+
+.speaker-list img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.speaker-list h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.speaker-list p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+img {
+    padding-top: 15px;
+    padding-right: 5px;
+    max-width: 25px;
+}
+
+h5 {
+    color: #e9531d;
+}
+
+
+.rating-container {
+    display: flex;
+    align-items: center;
+}
+
+.rating-container mat-icon,
+.rating-container p {
+    margin: 0;
+    padding: 0;
+}
+
+.staricon{
+    color: #e9531d;
+}
+
+
+::ng-deep .black-text {
+    color: black !important;
+}
+
+.orange{
+    background-color: #e9531d !important;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); background-color: #035d67; }
+    50% { transform: scale(1.1); background-color: #4b848e; }
+    100% { transform: scale(1); background-color: #035d67; }
+}
+
+.flash-button {
+    color: white !important;
+    animation: pulse 2s infinite;
+}

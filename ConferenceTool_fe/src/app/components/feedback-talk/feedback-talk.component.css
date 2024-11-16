@@ -1,0 +1,32 @@
+.feedback-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+button {
+    align-self: flex-end;
+}
+
+.commentlabel {
+    color: #e9531d;
+}
+
+.submitFeedback{
+    background-color: #e9531d;
+    color: white;
+    margin-top: 20px;
+}
+
+app-star-rating {
+    display: flex;
+    justify-content: center;
+}
+

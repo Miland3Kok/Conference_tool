@@ -1,0 +1,114 @@
+@use '@angular/material' as mat;
+@import "primeicons/primeicons.css";
+
+
+$custom-primary-palette: (
+        50: #fff,
+        100: #fff,
+        200: #fff,
+        300: #fff,
+        400: #fff,
+        500: #fff,
+        600: #fff,
+        700: #fff,
+        800: #fff,
+        900: #fff,
+        contrast : (
+                50: #000,
+                100: #000,
+                200: #000,
+                300: #000,
+                400: #000,
+                500: #000,
+                600: #000,
+                700: #000,
+                800: #000,
+                900: #000
+        )
+);
+
+$custom-accent-palette: (
+        50: #1d242b,
+        100: #1d242b,
+        200: #1d242b,
+        300: #1d242b,
+        400: #1d242b,
+        500: #1d242b,
+        600: #1d242b,
+        700: #1d242b,
+        800: #1d242b,
+        900: #1d242b,
+        contrast : (
+                50: #000,
+                100: #000,
+                200: #000,
+                300: #000,
+                400: #000,
+                500: #fff,
+                600: #fff,
+                700: #fff,
+                800: #fff,
+                900: #fff
+        )
+);
+
+$custom-warn-palette : (
+    50: #e9531d,
+    100: #e9531d,
+    200: #e9531d,
+    300: #e9531d,
+    400: #e9531d,
+    500: #e9531d,
+    600: #e9531d,
+    700: #e9531d,
+    800: #e9531d,
+    900: #e9531d,
+    contrast : (
+        50: #fff,
+        100: #fff,
+        200: #fff,
+        300: #fff,
+        400: #fff,
+        500: #fff,
+        600: #fff,
+        700: #fff,
+        800: #fff,
+        900: #fff
+    )
+);
+
+
+
+$custom-primary: mat.define-palette($custom-primary-palette);
+$custom-accent: mat.define-palette($custom-accent-palette);
+$custom-warn: mat.define-palette($custom-warn-palette);
+
+
+$custom-theme: mat.define-light-theme(
+                (
+                        color: (
+                                primary: $custom-primary,
+                                accent: $custom-accent,
+                                warn: $custom-warn
+                        )
+                )
+);
+
+$primaryColor: #1d242b;
+
+:host::ng-deep {
+  /* sets the style for pizza diavola */
+  .p-button.axxesTheme {
+    background: #ff0000 !important;
+    border: #cc8925 !important;
+  }
+
+}
+
+@include mat.all-component-themes($custom-theme);
+
+.mat-mdc-standard-chip {
+  --mdc-chip-label-text-color: #fff !important;
+  --mdc-chip-disabled-label-text-color: #fff;
+  --mdc-chip-label-text-size: 100%;
+}

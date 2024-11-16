@@ -1,0 +1,43 @@
+<meta property="og:title" content="Talk-detail" />
+<meta property="og:description" content="Talk detail page" />
+<meta property="og:url" content="http://localhost:4200/talk-detail/{{talk.talk_id}}" />
+
+<mat-card *ngIf="talk">
+    <mat-card-header>
+        <mat-card-title>{{talk.title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{talk.description}}</p>
+        <mat-divider></mat-divider>
+        <mat-chip-listbox>
+            <mat-chip class="orange">{{talk.start_date | date:'dd/MM/yyyy HH:mm'}} - {{talk.end_date | date:'HH:mm'}} </mat-chip>
+            <mat-chip class="orange" *ngIf="room">{{room.name}}</mat-chip>
+        </mat-chip-listbox>
+        <div *ngIf="doesTalkHaveQuestions">
+            <mat-divider></mat-divider>
+            <button class="flash-button" mat-raised-button (click)="onClickQuestion(talk.talk_id)">Questions</button>
+        </div>
+        <div *ngIf="talk.speakers.length > 0">
+            <mat-divider></mat-divider>
+            <h2>Speakers:</h2>
+            <mat-list class="speaker-list" >
+                <mat-list-item *ngFor="let speaker of talk.speakers">
+                    <h4 matLine>{{speaker.firstName + ' ' + speaker.lastName}}</h4>
+                    <h5 matLine>{{speaker.office_function}}</h5>
+                    <p matLine>{{speaker.bio}}</p>
+                </mat-list-item>
+            </mat-list>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="rating-container" *ngIf="rating">
+            <p>Average rating: </p>
+            <mat-icon class="staricon">star</mat-icon>
+            <p>{{rating}}</p>
+        </div>
+    </mat-card-content>
+    <app-feedback-talk *ngIf="!userHasGivenFeedback" [talkIdGiven]="talk.talk_id"></app-feedback-talk>
+    <mat-card-actions>
+        <img src="assets/images/LinkedIn_logo_initials.png" (click)="shareOnLinkedIn(talk)" alt="LinkedIn">
+        <img src="assets/images/Facebook_Logo_(2019).png" (click)="shareOnFacebook(talk)" alt="Facebook">
+    </mat-card-actions>
+</mat-card>

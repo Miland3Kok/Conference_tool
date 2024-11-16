@@ -1,0 +1,104 @@
+<app-sidenav [title]="'Update question'">
+    <mat-card *ngIf="question && questionFormGroup" class="updateQuestion">
+        <mat-card-header>
+            <mat-card-title>Question</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div *ngIf="question.type === 'CLOSED'">
+                <form [formGroup]="questionFormGroup" (ngSubmit)="updateClosedQuestion()">
+                    <ng-template matStepLabel>Update content and answers</ng-template>
+
+                    <div class="form-field">
+                        <label for="closedContent">Content</label>
+                        <input type="text" id="closedContent" name="closedContent" pInputText
+                               formControlName="closedContent" placeholder="Enter question"
+                               [value]="question.content"/>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="closedCorrect">Correct answer</label>
+                        <input type="text" id="closedCorrect" name="closedCorrect" pInputText
+                               formControlName="closedCorrect" placeholder="Enter correct answer"
+                               [value]="question.correct_answer"/>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="closedWrong">Wrong answer</label>
+                        <input type="text" id="closedWrong" name="closedWrong" pInputText
+                               formControlName="closedWrong" placeholder="Enter wrong answer"
+                               [value]="question.false_answer"/>
+                    </div>
+
+                    <div class="form-actions">
+                        <button color="accent" mat-button type="submit">Update closed question</button>
+                    </div>
+                </form>
+            </div>
+
+            <div *ngIf="question.type === 'MULTIPLE_CHOICE' && options && questionFormGroup && question">
+                <form [formGroup]="questionFormGroup" (ngSubmit)="updateMultipleChoiceQuestion()">
+                    <ng-template matStepLabel>Update content and answers</ng-template>
+
+                    <div class="form-field">
+                        <label for="multipleContent">Content</label>
+                        <input type="text" id="multipleContent" name="multipleContent" pInputText
+                               formControlName="multipleContent" placeholder="Enter question"
+                               [value]="question.content"/>
+                    </div>
+
+                    <ng-container formArrayName="options">
+
+                        <div *ngFor="let option of options.controls; let i = index"
+                             [formGroupName]="i" class="form-field">
+
+                            <label for="option{{i}}">
+                                Option {{ i + 1 }}
+                            </label>
+
+                            <div class="p-inputgroup">
+
+                            <span class="p-inputgroup-addon">
+                                <p-checkbox [binary]="true" formControlName="isCorrect"
+                                            [value]="option.value.isCorrect"></p-checkbox>
+                            </span>
+                                <input type="text"
+                                       id="option{{i}}"
+                                       name="option{{i}}"
+                                       pInputText
+                                       formControlName="option" placeholder="Enter option"
+                                       [value]="option.value.option"/>
+
+                                <button type="button" pButton pRipple icon="pi pi-times" (click)="removeOption(i)"></button>
+
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <button type="button" mat-button (click)="addOption()">Add Option</button>
+
+                    <div class="form-actions">
+                        <button color="accent" mat-button type="submit">Update multiple choice question</button>
+                    </div>
+                </form>
+            </div>
+
+            <div *ngIf="question.type === 'OPEN'">
+                <form [formGroup]="questionFormGroup" (ngSubmit)="updateOpenQuestion()">
+                    <ng-template matStepLabel>Update content</ng-template>
+
+                    <div class="form-field">
+                        <label for="openContent">Content</label>
+                        <input type="text" id="openContent" name="openContent" pInputText
+                               formControlName="openContent" placeholder="Enter question"
+                               [value]="question.content"/>
+                    </div>
+
+                    <div class="form-actions">
+                        <button color="accent" mat-button type="submit">Update open question</button>
+                    </div>
+                </form>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</app-sidenav>

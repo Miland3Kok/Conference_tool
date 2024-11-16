@@ -1,0 +1,41 @@
+<app-sidenav [title]="'Rooms'">
+    <table mat-table [dataSource]="rooms" class="mat-elevation-z8">
+        <ng-container matColumnDef="roomName">
+            <th mat-header-cell *matHeaderCellDef> Room Name</th>
+            <td class="nameCell" mat-cell *matCellDef="let room"><b>{{ room.name }}</b></td>
+        </ng-container>
+
+        <ng-container matColumnDef="numberOfTalks">
+            <th mat-header-cell *matHeaderCellDef> Number of Talks</th>
+            <td mat-cell *matCellDef="let room"> {{ room.talks.length }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> Edit</th>
+            <td mat-cell *matCellDef="let room">
+                <button mat-button color="accent" (click)="goToUpdateRoomUPage(room)">Edit
+                    <mat-icon color="accent" matListItemIcon>edit</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="remove">
+            <th mat-header-cell *matHeaderCellDef> Remove</th>
+            <td mat-cell *matCellDef="let room">
+                <button mat-button color="warn" (click)="deleteRoom(room)">Remove
+                    <mat-icon color="warn" matListItemIcon>delete_forever</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['roomName', 'numberOfTalks', 'edit', 'remove']"></tr>
+        <tr mat-row *matRowDef="let row; columns: [ 'roomName', 'numberOfTalks', 'edit', 'remove'];"></tr>
+    </table>
+
+    <ng-container>
+        <button class="createButton" mat-raised-button color="warn" (click)="goToCreateRoomPage()">
+            <mat-icon matListItemIcon>add_circle_outline</mat-icon>
+            Add a room
+        </button>
+    </ng-container>
+</app-sidenav>

@@ -1,0 +1,51 @@
+<app-sidenav [title]="'Create Message'">
+    <div class="messageWrapper">
+
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Create a Message for organisation</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="messageForm">
+                <div class="form-field">
+                    <label for="subject">Title</label>
+                    <input type="text"
+                           id="subject"
+                           name="subject"
+                           pInputText
+                           formControlName="subject"
+                           placeholder="Message title"/>
+                </div>
+
+                <div class="form-field">
+                    <label for="message">Message</label>
+                    <textarea name="message"
+                              type="text"
+                              id="message"
+                              pInputTextarea
+                              formControlName="message"
+                              placeholder="Your message"></textarea>
+                </div>
+
+                <div class="form-field important">
+                    <label for="important">Important</label>
+                    <input type="checkbox"
+                           id="important"
+                           name="important"
+                           pInputSwitch
+                           formControlName="important"/>
+                </div>
+
+                <div class="form-actions">
+                    <button mat-raised-button color="warn" type="button"  (click)="createMessage()">Create message</button>
+                </div>
+
+            </form>
+        </mat-card-content>
+
+    </mat-card>
+
+    </div>
+
+</app-sidenav>

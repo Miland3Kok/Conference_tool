@@ -1,0 +1,42 @@
+.answerInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+
+p-chart {
+    display: flex !important;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.piechart div {
+    width: 80%;
+    height: 80%;
+    margin: auto;
+}
+
+.piechart div canvas {
+
+    display: flex;
+}
+
+angular-tag-cloud {
+    margin: auto;
+    width: 70% !important;
+    height: 70% !important;
+    overflow: visible;
+}
+
+.mat-card, mat-card {
+    width: 80% !important;
+    text-align: center;
+    margin: 10px auto 0;
+}
+
+
+

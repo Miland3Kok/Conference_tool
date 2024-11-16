@@ -1,0 +1,98 @@
+<!-- sidenav.component.html -->
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav  mode="side" [opened]="isExpanded" (openedChange)="isExpanded = $event">
+        <mat-grid-list cols="4" rowHeight="2:1">
+            <mat-grid-tile rowspan="2" colspan="1">
+                <img *ngIf="profilePicture" class="avatar" [src]="profilePicture" alt="Avatar">
+                <mat-icon *ngIf="!profilePicture" id="account-icon">account_circle</mat-icon>
+            </mat-grid-tile>
+            <mat-grid-tile class="job-name-tile" rowspan="2" colspan="2">
+                <p id="job-title">{{ function }}</p>
+                <h3 id="name">{{ userName }}</h3>
+            </mat-grid-tile>
+            <mat-grid-tile class="axxes-tile" rowspan="2" colspan="1">
+                <img ngSrc="assets/images/Beeldmerk_Axxes-RGB.png" alt="Axxes logo" height="40" width="74">
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <mat-nav-list>
+            <a class="nav-item" mat-list-item routerLink="/home">
+                <mat-icon matListItemIcon>home</mat-icon>
+                Home
+            </a>
+            <mat-divider></mat-divider>
+
+            <a *ngIf="isAuthorized(['admin', 'organizer'])" mat-list-item routerLink="/messages">
+                <mat-icon matListItemIcon>message</mat-icon>
+                Messages
+            </a>
+            <mat-divider *ngIf="isAuthorized(['admin', 'organizer'])"></mat-divider>
+
+            <a *ngIf="isAuthorized(['admin', 'organizer'])" mat-list-item routerLink="/user-table">
+                <mat-icon matListItemIcon>people</mat-icon>
+                User-management
+            </a>
+            <mat-divider *ngIf="isAuthorized(['admin', 'organizer'])"></mat-divider>
+
+            <a *ngIf="isAuthorized(['speaker'])" mat-list-item routerLink="/new-message">
+                <mat-icon matListItemIcon>message</mat-icon>
+                New message
+            </a>
+            <mat-divider *ngIf="isAuthorized(['speaker'])"></mat-divider>
+
+            <a mat-list-item routerLink="/schedule">
+                <mat-icon matListItemIcon>date_range</mat-icon>
+                Schedule
+            </a>
+            <mat-divider matListItemIcon></mat-divider>
+
+            <a mat-list-item routerLink="/speakers">
+                <mat-icon matListItemIcon>people</mat-icon>
+                Speakers
+            </a>
+            <mat-divider></mat-divider>
+
+            <a mat-list-item routerLink="/floorplan">
+                <mat-icon matListItemIcon>map</mat-icon>
+                Floorplan
+            </a>
+            <mat-divider></mat-divider>
+
+            <a *ngIf="isAuthorized(['admin', 'organizer'])" mat-list-item routerLink="/conferences">
+                <mat-icon matListItemIcon>view_list</mat-icon>
+                Conferences
+            </a>
+            <mat-divider *ngIf="isAuthorized(['admin', 'organizer'])"></mat-divider>
+
+            <a *ngIf="isAuthorized(['speaker'])" mat-list-item routerLink="/speaker-talks">
+                <mat-icon matListItemIcon>view_list</mat-icon>
+                Your talks
+            </a>
+            <mat-divider *ngIf="isAuthorized(['speaker'])"></mat-divider>
+
+
+            <div class="bottom-nav-items">
+                <a mat-list-item routerLink="/myAccount">
+                    <mat-icon matListItemIcon>settings</mat-icon>
+                    My account
+                </a>
+                <mat-divider></mat-divider>
+
+                <a mat-list-item (click)="logout()">
+                    <mat-icon matListItemIcon>logout</mat-icon>
+                    Log out
+                </a>
+                <mat-divider></mat-divider>
+            </div>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="accent" class="navbar">
+            <button mat-icon-button (click)="toggleCollapse()">
+                <mat-icon>{{ isExpanded ? 'menu_open' : 'menu' }}</mat-icon>
+            </button>
+            <span>{{ title }}</span>
+        </mat-toolbar>
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>

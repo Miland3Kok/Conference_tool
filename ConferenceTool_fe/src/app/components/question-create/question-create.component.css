@@ -1,0 +1,46 @@
+.mat-card, mat-card {
+    width: 80% !important;
+    text-align: center;
+    margin: 10px auto 0;
+    font-family: "montserrat", sans-serif !important;
+}
+
+.mat-card-header, mat-card-header {
+    margin: 0 auto 3vh;
+    font-size: 150% !important;
+}
+
+.form-field {
+    margin-bottom: 2vh;
+    display: grid;
+}
+
+.form-field label {
+    width: 50%;
+    padding: 1vh 0;
+    font-size: 130%;
+    margin: 0 auto;
+    text-align: left;
+    font-family: "montserrat", sans-serif !important;
+    letter-spacing: 2px;
+}
+
+
+.form-field input, .form-field textarea, ::ng-deep .p-calendar, ::ng-deep .p-dropdown, .p-inputgroup{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.form-actions {
+    margin-top: 20px;
+}
+
+
+
+.mat-mdc-form-field {
+    margin-top: 16px;
+}
+
+.mat-horizontal-content-container {
+    overflow: visible !important;
+}

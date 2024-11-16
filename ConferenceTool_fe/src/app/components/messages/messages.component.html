@@ -1,0 +1,25 @@
+<app-sidenav [title]="'Messages'">
+    <table mat-table [dataSource]="messages" class="mat-elevation-z8">
+        <ng-container matColumnDef="blink">
+            <th mat-header-cell *matHeaderCellDef>Important</th>
+            <td mat-cell *matCellDef="let message">
+                <span class="blink_me" *ngIf="message.important"></span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="subject">
+            <th mat-header-cell *matHeaderCellDef>Subject</th>
+            <td mat-cell *matCellDef="let message" class="clickable-row" (click)="openMessage(message)">
+                <b>{{ message.subject }}</b></td>
+        </ng-container>
+
+        <ng-container matColumnDef="speaker">
+            <th mat-header-cell *matHeaderCellDef>Speaker</th>
+            <td mat-cell *matCellDef="let message">
+                <b>{{ message.speaker.firstName + ' ' + message.speaker.lastName }}</b></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</app-sidenav>

@@ -1,0 +1,30 @@
+.blink_me {
+    animation: blinker 1.5s linear infinite;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border: 1px solid red;
+    background-color: red;
+    border-radius: 100%;
+}
+@keyframes blinker {
+    50% {
+        opacity: 0.4;
+    }
+}
+
+b{
+    cursor: pointer !important;
+}
+.clickable-row {
+    cursor: pointer;
+}
+
+.clickable-row:hover {
+    background-color: #f0f0f0; /* Add a background color on hover for visual feedback */
+}
+
+.no-click {
+    cursor: auto;
+}
+

@@ -1,0 +1,26 @@
+<app-sidenav [title]="'Questions of talk'">
+    <div *ngFor="let question of questions; let i = index" class="question-container">
+        <form [formGroup]="answerForm[i]" (ngSubmit)="onSubmit(i)" class="question-form">
+            <h2>{{ question.content }}</h2>
+
+            <!-- Open Question -->
+            <div *ngIf="question.type === 'Open'">
+                <textarea  formControlName="answer" placeholder="Your answer"></textarea>
+            </div>
+
+            <!-- Closed Question -->
+            <div *ngIf="question.type === 'Closed'">
+                <p-radioButton name="answer" formControlName="answer" value="{{ question.correctAnswer }}" label="{{ question.correctAnswer }}"></p-radioButton>
+                <p-radioButton name="answer" formControlName="answer" value="{{ question.falseAnswer }}" label="{{ question.falseAnswer }}"></p-radioButton>
+            </div>
+
+            <!-- Multiple Choice Question -->
+            <div *ngIf="question.type === 'MultipleChoice'">
+                <div formArrayName="answer" *ngFor="let option of question.options; let j = index">
+                    <input type="checkbox" [formControlName]="j">{{ option.optionText }}
+                </div>
+            </div>
+            <button pButton type="submit" label="Submit" [disabled]="answered[i]"></button>
+        </form>
+    </div>
+</app-sidenav>

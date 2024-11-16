@@ -1,0 +1,22 @@
+<app-sidenav [title]="'Speakers for upcoming ' + (conference?.name || 'Conference')">
+    <div class="speaker-wrapper">
+        <mat-card class="speaker-card" *ngFor="let speaker of speakers">
+            <img class="speakerImg" *ngIf="speaker.user.givenProfilePicture" mat-card-image [src]="speaker.user.givenProfilePicture"
+                 alt="Photo of a Shiba Inu" height="200px" width="200px">
+            <img class="speakerImg" *ngIf="!speaker.user.givenProfilePicture" mat-card-image src="https://www.w3schools.com/howto/img_avatar.png" width="100%" height="200px">
+            <mat-card-header>
+                <mat-card-title>{{ speaker.user.firstName + " " + speaker.user.lastName }}</mat-card-title>
+                <mat-card-subtitle>{{ speaker.user.office_function }}</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+                <p>{{ speaker.bio }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+                    <mat-icon color="warn">favorite</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</app-sidenav>

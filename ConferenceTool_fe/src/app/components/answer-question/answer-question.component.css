@@ -1,0 +1,19 @@
+.question-container {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.question-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.question-form h2 {
+    margin-bottom: 10px;
+}
+
+.question-form p-radioButton {
+    margin-bottom: 10px;
+}

@@ -1,0 +1,12 @@
+.createButton {
+  margin: 3vh;
+}
+
+td, th {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.nameCell,  th:nth-child(1){
+    text-align: left !important;
+}

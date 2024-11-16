@@ -1,0 +1,36 @@
+@media screen and (min-width: 768px) {
+
+
+    .speaker-card {
+        min-width: 50vh;
+        max-width: 50vh;
+        margin-bottom: 2vh;
+        display: flex;
+    }
+
+
+
+}
+
+
+.speaker-wrapper {
+    padding: 2vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+mat-card-content {
+    padding: 1vh;
+    margin: 1vh;
+}
+
+.speakerImg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain; /* or use 'cover' if you want the image to cover the entire container */
+    height: 200px;
+    width: 200px;
+}

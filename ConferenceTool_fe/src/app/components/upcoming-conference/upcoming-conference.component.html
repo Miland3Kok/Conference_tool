@@ -1,0 +1,10 @@
+<div class="img-container">
+    <img class="imggrey" src="./assets/images/conferencetalk.jpg"  alt="Conference">
+    <div class="upcomingconference">
+        <h2 class="upcomingh2" style="line-height: 1">{{conference?.name}}</h2>
+        <mat-divider></mat-divider>
+        <p class="upcomingp">{{conference?.description}}</p>
+        <mat-divider></mat-divider>
+        <p class="dateUpcoming">{{conference?.start_date | date:'dd/MM/yyyy, HH:mm'}}</p>
+    </div>
+</div>

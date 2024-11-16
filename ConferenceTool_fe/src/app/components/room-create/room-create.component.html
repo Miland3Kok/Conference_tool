@@ -1,0 +1,26 @@
+<app-sidenav [title]="'Room create'">
+    <mat-card class="updateCard" *ngIf="roomForm && conference">
+        <mat-card-header>
+            <mat-card-title>Create Room for {{conference.name}}</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="roomForm">
+                <div class="form-field">
+                    <label for="name">Name</label>
+                    <input id="name"
+                           type="text"
+                           pInputText
+                           formControlName="name">
+                </div>
+            </form>
+        </mat-card-content>
+
+
+        <div class="form-actions">
+            <button mat-raised-button color="accent" type="button" (click)="createRoom()">
+                <mat-icon matListItemIcon>add_circle_outline</mat-icon> Create room
+            </button>
+        </div>
+    </mat-card>
+</app-sidenav>

@@ -1,0 +1,56 @@
+<app-sidenav [title]="'Schedule'">
+    <mat-tab-group color="accent">
+        <mat-tab *ngFor="let date of dates"
+                 [label]="date.toDateString()">
+
+            <h2 id="schedule-heading"></h2>
+
+            <div class="schedule"
+                 aria-labelledby="schedule-heading"
+                 [dynamicGrid]="getRoomsForDate(date).length"
+            >
+
+                <h2 *ngFor="let timeSlot of eveningTimeSlots"
+                    class="time-slot"
+                    [style.grid-row]="timeSlot">
+                    {{ getTimeFromSlot(timeSlot) }}
+                </h2>
+
+                <span *ngFor="let room of getRoomsForDate(date); let i = index"
+                      class="track-slot"
+                      aria-hidden="true"
+                      [style.grid-column]="'track-' + (i+1)" style="grid-row: tracks;"
+                      [style.background-color]="getRoomColor(room.room_id, '')">
+
+                    {{ room.name }}
+                </span>
+
+                <div *ngFor="let talk of getTalksForDate(date)"
+                     class="session"
+                     [style.background-color]="getRoomColor(talk.room, talk.talk_id.toString())"
+                     [style.grid-column]="'track-' + (getTrackNumberForRoom(talk.room, date)+1)"
+                     [style.grid-row-start]="'time-' + getHoursFromDate(talk.start_date) + getMinutesFromDate(talk.start_date)"
+                     [style.grid-row-end]="'time-' + getHoursFromDate(talk.end_date) + getMinutesFromDate(talk.end_date)">
+
+                    <h3 class="session-title">
+                        {{ talk.title }}
+                        <span [ngClass]="isFavouriteTalk(talk.talk_id.toString()) ? 'info-icon-favorited' : 'info-icon-not-favorited'">
+                            <mat-icon (click)="openDialog(talk)" aria-label="Example info icon" fontIcon="info"></mat-icon>
+                            <mat-icon (click)="onFavouriteButtonClick(talk.talk_id.toString())" *ngIf="isFavouriteTalk(talk.talk_id.toString())" aria-label="Example favorite icon" fontIcon="favorite"></mat-icon>
+                            <mat-icon (click)="onFavouriteButtonClick(talk.talk_id.toString())" *ngIf="!isFavouriteTalk(talk.talk_id.toString())" aria-label="Example favorite icon" fontIcon="favorite_border"></mat-icon>
+                        </span>
+                    </h3>
+
+                    <span class="session-time" *ngIf="getTalkDuration(talk) > 0.5">
+                        {{ getHoursFromDate(talk.start_date) + ':' + getMinutesFromDate(talk.start_date) }} -
+                        {{ getHoursFromDate(talk.end_date) + ':' + getMinutesFromDate(talk.end_date) }}
+                    </span>
+
+                    <span class="session-presenter" *ngIf="getTalkDuration(talk) > 1">{{ talk.description | truncate }}</span>
+
+
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</app-sidenav>

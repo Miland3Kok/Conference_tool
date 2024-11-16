@@ -1,0 +1,91 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-gap: 16px;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+mat-card {
+    width: 500px;
+    height: 600px;
+    object-fit: cover;
+}
+
+#featuredTalksHeader{
+    font-size: 2em;
+    padding-top: 20px;
+}
+
+ng-template {
+    width: 100%;
+}
+
+p-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+}
+.orange {
+    background-color: #e9531d !important;
+}
+
+.actions {
+    margin-top: 10px;
+}
+
+.border-1 {
+    border: 1px solid #000;
+}
+
+.surface-border {
+    border-color: #ddd;
+}
+
+.border-round {
+    border-radius: 5px;
+}
+
+.m-2 {
+    margin: 1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+
+p-carousel{
+    display: block;
+}
+
+.title{
+    font-size: 1.5em;
+    font-weight: bold !important;
+}
+
+
+.talkWrapper{
+    min-height: 60vh !important;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 3rem;
+}
+@media screen and (min-width: 992px) {
+
+    .talkWrapper{
+        min-height: 45vh;
+        align-items: center;
+    }
+
+    .py-5 {
+        padding-top: 7rem;
+        padding-bottom: 5rem;
+    }
+
+
+}
+

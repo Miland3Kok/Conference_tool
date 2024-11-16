@@ -1,0 +1,213 @@
+<app-sidenav [title]="'Conference Create'">
+    <mat-stepper [linear]="true" #stepper [animationDuration]="'1000'">
+        <mat-step [stepControl]="conferenceFormGroup">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Create a Conference</mat-card-title>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <form [formGroup]="conferenceFormGroup">
+                        <ng-template matStepLabel>Fill out the conference info</ng-template>
+                        <div class="form-field">
+                            <label for="name">Name</label>
+                            <input type="text"
+                                   id="name"
+                                   name="name"
+                                   pInputText
+                                   formControlName="name"
+                                   placeholder="eg. Axxes Conference 2024">
+                            <mat-error class="p-error" *ngIf="conferenceFormGroup.get('name')!.hasError('required') && conferenceFormGroup.get('name')?.touched"> Name is required.</mat-error>
+                            <mat-error class="p-error" *ngIf="conferenceFormGroup.get('name')!.hasError('minlength') && conferenceFormGroup.get('name')?.touched"> Name should be at least 3 characters.</mat-error>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="description">Description</label>
+                            <textarea name="description"
+                                      id="description"
+                                      pInputTextarea
+                                      formControlName="description"
+                                      placeholder="A detailed description about the conference."
+                                      [autoResize]="true">
+                            </textarea>
+                            <mat-error class="p-error" *ngIf="conferenceFormGroup.get('description')!.hasError('required') && conferenceFormGroup.get('description')?.touched"> Description is required.</mat-error>
+                            <mat-error class="p-error" *ngIf="conferenceFormGroup.get('description')!.hasError('minlength') && conferenceFormGroup.get('description')?.touched"> Description should be at least 1O characters.</mat-error>
+
+                        </div>
+
+                        <div class="form-field">
+                            <label for="start-date">Start date</label>
+                            <p-calendar name="start_date"
+                                        [showTime]="true"
+                                        [showIcon]="true"
+                                        id="start-date"
+                                        formControlName="start_date"
+                                        hourFormat="24"
+                                        [stepMinute]="5">
+                            </p-calendar>
+
+                            <mat-error class="p-error" *ngIf="conferenceFormGroup.get('start_date')!.hasError('required') && conferenceFormGroup.get('start_date')?.touched"> Start date is required.</mat-error>
+                            <mat-error class="p-error" *ngIf="conferenceFormGroup.get('start_date')!.hasError('todayOrLater') && conferenceFormGroup.get('start_date')?.touched"> Start date must be today or later.</mat-error>
+
+                        </div>
+                        <div class="form-field">
+                            <label for="end-date">End date</label>
+                            <p-calendar name="end_date"
+                                        [showTime]="true"
+                                        [showIcon]="true"
+                                        id="end-date"
+                                        formControlName="end_date"
+                                        hourFormat="24"
+                                        [stepMinute]="5">
+                            </p-calendar>
+                            <mat-error class="p-error" *ngIf="conferenceFormGroup.get('end_date')!.hasError('required') && conferenceFormGroup.get('end_date')?.touched"> End date is required.</mat-error>
+                            <mat-error class="p-error" *ngIf="conferenceFormGroup.get('end_date')!.hasError('todayOrLater') && conferenceFormGroup.get('end_date')?.touched"> End date must be today or later.</mat-error>
+                            <mat-error class="p-error" *ngIf="conferenceFormGroup.get('end_date')!.hasError('endDateBeforeStartDate') && conferenceFormGroup.get('end_date')?.touched"> End date must be after start date.</mat-error>
+                        </div>
+                        <div class="form-actions">
+                            <div>
+                                <button color="warn" mat-button (click)="markFormGroupTouched(conferenceFormGroup); stepper.next()">Next</button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+
+
+        </mat-step>
+
+        <mat-step [stepControl]="locationFormGroup">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Create/Update Location</mat-card-title>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <form [formGroup]="locationFormGroup">
+                        <ng-template matStepLabel>Fill out the location</ng-template>
+
+                        <div class="form-field">
+                            <label for="street">Street</label>
+                            <input type="text"
+                                   id="street"
+                                   name="street"
+                                   pInputText
+                                   formControlName="street"
+                                   placeholder="Enter street"
+                            />
+
+                            <mat-error class="p-error" *ngIf="locationFormGroup.get('street')!.hasError('required') && locationFormGroup.get('street')?.touched"> Street is required.</mat-error>
+
+                        </div>
+
+                        <div class="form-field">
+                            <label for="number">Number</label>
+                            <input type="text"
+                                   id="number"
+                                   name="number"
+                                   pInputText
+                                   formControlName="number"
+                                   placeholder="Enter number"
+                            />
+                            <mat-error class="p-error" *ngIf="locationFormGroup.get('number')!.hasError('required') && locationFormGroup.get('number')?.touched"> Number is required.</mat-error>
+
+                        </div>
+
+                        <div class="form-field">
+                            <label for="city">City</label>
+                            <input type="text"
+                                   id="city"
+                                   name="city"
+                                   pInputText
+                                   formControlName="city"
+                                   placeholder="Enter city"/>
+
+                            <mat-error class="p-error" *ngIf="locationFormGroup.get('city')!.hasError('required') && locationFormGroup.get('city')?.touched"> City is required.</mat-error>
+
+                        </div>
+
+                        <div class="form-field">
+                            <label for="postal_code">Postal Code</label>
+                            <input type="text"
+                                   id="postal_code"
+                                   name="postal_code"
+                                   pInputText
+                                   formControlName="postal_code"
+                                   placeholder="Enter postal code"
+                            />
+
+                            <mat-error class="p-error" *ngIf="locationFormGroup.get('postal_code')!.hasError('required') && locationFormGroup.get('postal_code')?.touched"> Postal code is required.</mat-error>
+
+                        </div>
+
+                        <div class="form-field">
+                            <label for="country">Country</label>
+                            <input type="text"
+                                   id="country"
+                                   name="country"
+                                   pInputText
+                                   formControlName="country"
+                                   placeholder="Enter country"
+                            />
+                            <mat-error class="p-error" *ngIf="locationFormGroup.get('country')!.hasError('required') && locationFormGroup.get('country')?.touched"> Country is required.</mat-error>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="extraInfo">Extra Info</label>
+                            <input type="text"
+                                   id="extraInfo"
+                                   name="extraInfo"
+                                   pInputText
+                                   formControlName="extraInfo"
+                                   placeholder="Enter extra info"
+                            />
+                        </div>
+
+                        <div class="form-actions">
+                            <div>
+                                <button color="accent" mat-button matStepperPrevious>Back</button>
+                                <button color="warn" mat-button (click)="markFormGroupTouched(locationFormGroup); stepper.next()">Next</button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+
+
+        <mat-step>
+            <ng-template matStepLabel>Check all fields.</ng-template>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>{{ conferenceFormGroup.get('name')?.value }}</mat-card-title>
+                    <mat-card-subtitle>{{  conferenceFormGroup.get('description')?.value }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p><strong>Start Date:</strong> {{ formatDates(conferenceFormGroup.get('start_date')?.value)}}</p>
+                    <p><strong>End Date:</strong> {{ formatDates(conferenceFormGroup.get('end_date')?.value) }}</p>
+
+
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>Location:</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <p><strong>Street:</strong> {{ locationFormGroup.get('street')?.value }}</p>
+                            <p><strong>Number:</strong> {{ locationFormGroup.get('number')?.value }}</p>
+                            <p><strong>Postal Code:</strong> {{ locationFormGroup.get('postal_code')?.value }}</p>
+                            <p><strong>City:</strong> {{ locationFormGroup.get('city')?.value }}</p>
+                            <p><strong>Country:</strong> {{ locationFormGroup.get('country')?.value }}</p>
+                            <p><strong>Extra info:</strong> {{ locationFormGroup.get('extraInfo')?.value }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-card-content>
+            </mat-card>
+
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="createConference()">Create</button>
+            </div>
+        </mat-step>
+    </mat-stepper>
+
+</app-sidenav>

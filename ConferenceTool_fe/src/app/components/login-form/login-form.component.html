@@ -1,0 +1,18 @@
+
+<form class="login-form">
+    <mat-form-field class="login-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Ex. JohnnyDoe@gmail.com" required>
+    </mat-form-field>
+
+    <mat-form-field class="login-full-width">
+        <mat-label>password</mat-label>
+        <input matInput placeholder="JohnDoe92_%!" required>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <button mat-raised-button id="loginButton" (click)="onLoginClick()">Login</button>
+    <ul id="loginList">
+        <li><a href="">Forgot password?</a></li>
+        <li><a href="">Privacy</a></li>
+    </ul>
+</form>

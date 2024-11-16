@@ -1,0 +1,9 @@
+<app-sidenav [title]="'Floorplan'">
+
+    <div *ngIf="hasRole('admin') || hasRole('organizer')">
+        <input type="file" id="imageUpload" accept="image/*">
+        <label for="imageUpload" mat-raised-button>Choose File</label>
+        <button mat-raised-button color="warn" (click)="uploadFloorPlan()">Upload</button>
+    </div>
+    <img src='{{floorplan}}' alt="Floor Plan">
+</app-sidenav>

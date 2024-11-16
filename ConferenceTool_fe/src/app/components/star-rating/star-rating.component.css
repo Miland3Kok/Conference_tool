@@ -1,0 +1,10 @@
+mat-icon.active {
+    color: #e9531d;
+}
+
+mat-icon {
+    cursor: pointer;
+    font-size: 40px;
+    width: auto;
+    height: auto;
+}

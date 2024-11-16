@@ -1,0 +1,102 @@
+<app-sidenav [title]="'Talk Create'">
+    <mat-card class="createCard" *ngIf="talkForm && room">
+        <mat-card-header>
+            <mat-card-title>Create Talk for room {{room.name}}</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="talkForm">
+                <div class="form-field">
+                    <label for="title">Title</label>
+                    <input id="title"
+                           type="text"
+                           pInputText
+                           formControlName="title"
+                           placeholder="Enter title of the talk"
+                    >
+                    <!---
+
+                    <mat-error class="p-error"
+                               *ngIf="talkForm.get('title')!.hasError('required') && talkForm.get('title')?.touched">
+                        Title is required.
+                    </mat-error>
+                    <mat-error class="p-error"
+                               *ngIf="talkForm.get('title')!.hasError('minlength') && talkForm.get('title')?.touched">
+                        Title should be at least 3 characters.
+                    </mat-error>
+                    -->
+
+                </div>
+
+                <div class="form-field">
+                    <label for="description">Description</label>
+                    <textarea id="description"
+                              type="text"
+                              pInputTextarea
+                              [autoResize]="true"
+                              formControlName="description"
+                              placeholder="Enter description of the talk"
+                    >
+                    </textarea>
+
+                    <!---
+                    <mat-error class="p-error"
+                               *ngIf="talkForm.get('description')!.hasError('required') && talkForm.get('description')?.touched">
+                        Description is required.
+                    </mat-error>
+                    <mat-error class="p-error"
+                               *ngIf="talkForm.get('description')!.hasError('minlength') && talkForm.get('description')?.touched">
+                        Description should be at least 1O characters.
+                    </mat-error>
+
+                    -->
+
+                </div>
+
+                <div class="form-field">
+                    <label for="start-date">Start date</label>
+                    <p-calendar name="start_date"
+                                [showTime]="true"
+                                [showIcon]="true"
+                                id="start-date"
+                                formControlName="start_date"
+                                hourFormat="24"
+                                [stepMinute]="5">
+                    </p-calendar>
+                    <!---
+                    <mat-error class="p-error" *ngIf="talkForm.get('start_date')!.hasError('required') && talkForm.get('start_date')?.touched"> Start date is required.</mat-error>
+                    <mat-error class="p-error" *ngIf="talkForm.get('start_date')!.hasError('todayOrLater') && talkForm.get('start_date')?.touched"> Start date must be today or later.</mat-error>
+                    -->
+
+
+                </div>
+                <div class="form-field">
+                    <label for="end-date">End date</label>
+                    <p-calendar name="end_date"
+                                [showTime]="true"
+                                [showIcon]="true"
+                                id="end-date"
+                                formControlName="end_date"
+                                hourFormat="24"
+                                [stepMinute]="5">
+                    </p-calendar>
+
+                    <!---
+                    <mat-error class="p-error" *ngIf="talkForm.get('end_date')!.hasError('required') && talkForm.get('end_date')?.touched"> End date is required.</mat-error>
+                    <mat-error class="p-error" *ngIf="talkForm.get('end_date')!.hasError('todayOrLater') && talkForm.get('end_date')?.touched"> End date must be today or later.</mat-error>
+                    <mat-error class="p-error" *ngIf="talkForm.get('end_date')!.hasError('endDateBeforeStartDate') && talkForm.get('end_date')?.touched"> End date must be after start date.</mat-error>
+                    -->
+                </div>
+
+
+            </form>
+        </mat-card-content>
+
+
+        <div class="form-actions">
+            <button mat-raised-button color="accent" type="button" (click)="createTalk()">
+                <mat-icon matListItemIcon>add_circle_outline</mat-icon> Create
+            </button>
+        </div>
+    </mat-card>
+</app-sidenav>
